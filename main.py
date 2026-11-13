@@ -139,9 +139,9 @@ def forecast_market(prices, horizon):
             qs[3],
             med_q + (qs[4] - med_q) * TAIL_MULT,
         ]
-        # Centre on the last price: the empirical median change is ~0, so
-        # shift the row so its median sits exactly on the last price.
-        shift = x - (x + qs[2])
+        # Centre on the last price: shift the row so its median sits
+        # exactly on the last price (the empirical median change is ~0).
+        shift = -qs[2]
         row = [price6(x + q + shift) for q in qs]
         for k in range(1, 5):
             if row[k] < row[k - 1]:
